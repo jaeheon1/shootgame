@@ -353,6 +353,8 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/Script/Controller.cs"
 "Assets/Script/Enemy.cs"
+"Assets/Script/gamemanager.cs"
+"Assets/Script/UImanager.cs"
 -langversion:9.0
 
 /deterministic
