@@ -15,12 +15,17 @@ public class Enemy : MonoBehaviour
     {
         //vector3.down=0,-1,0
         transform.Translate(Vector3.down * Time.deltaTime); // 적 비행기 내려옴
+
+        if(transform.position.y<=-4.5f)
+        {
+            Destroy(gameObject);
+        }
     }
     //게임 오브젝트가 화면 밖으로 벗어났을때 호출되는 함수
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
+    //private void OnBecameInvisible()
+    //{
+    //    Destroy(gameObject);
+    //}
 
 
     //게임 오브젝트와 충돌을 했을때 호출되는 함수

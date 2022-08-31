@@ -6,20 +6,23 @@ public class Controller : MonoBehaviour
 {
 
     [SerializeField] float speed = 1.0f;
+    [SerializeField] Transform centerMuzzle;
 
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked; //마우스 락
+
+        InvokeRepeating(nameof(LayerCreate), 0, 0.1f);
     }
 
     
     void Update()
     {
         float x= Input.GetAxis("Mouse X");//모바일도 되고 pc도 됩니다.
-        float y = Input.GetAxis("Mouse Y");
+      
 
-        Vector3 direction = new Vector3(x, y, 0);
+        Vector3 direction = new Vector3(x,0, 0);
 
         transform.Translate(direction.normalized * speed * Time.deltaTime);
 
@@ -28,13 +31,25 @@ public class Controller : MonoBehaviour
         Vector3 position = Camera.main.WorldToViewportPoint(transform.position);
 
         //좌표 정보를 기준으로 조건문을 작성합니다.
-        if (position.x < 0f) position.x = 0.0f;
-        if (position.x > 1f) position.x = 1.0f;
-        if (position.y < 0f) position.y = 0.0f;
-        if (position.y > 1f) position.y = 1.0f;
+        if (position.x < 0.1f) position.x = 0.1f;
+        if (position.x > 0.9f) position.x = 0.9f;
+       
 
         transform.position = Camera.main.ViewportToWorldPoint(position);
 
 
     }
+
+    public void LayerCreate()
+    {
+        Instantiate
+            (
+            Resources.Load<GameObject>("Layer"),
+            centerMuzzle.position,
+            Quaternion.identity
+
+            );
+    }
+
+
 }
