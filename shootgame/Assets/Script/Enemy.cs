@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    
+    private SpriteRenderer enemysprite;
+    private Material enemyMaterial;
+    [SerializeField] Material flash;
+
     void Start()
     {
-        
+        enemysprite = GetComponent<SpriteRenderer>();
+        enemyMaterial = enemysprite.material;
+
+        flash = new Material(flash);
+
     }
+
+
+
+   
 
     
     void Update()
@@ -20,6 +31,12 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(nameof(Damage));
+        }
+
     }
     //게임 오브젝트가 화면 밖으로 벗어났을때 호출되는 함수
     //private void OnBecameInvisible()
@@ -46,4 +63,13 @@ public class Enemy : MonoBehaviour
             //메모리풀 : 반복적으로 생성되고 파괴되는 오브젝트만 메모리풀에 적재합니다.
     }
 
+    private IEnumerator Damage()
+    {
+        enemysprite.material = flash;
+        flash.color = new Color(1, 1, 1, 0.5f);
+
+        yield return new WaitForSeconds(0.05f);
+
+        enemysprite.material = enemyMaterial;
+    }
 }

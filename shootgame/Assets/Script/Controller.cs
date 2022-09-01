@@ -1,21 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
+
 
 public class Controller : MonoBehaviour
 {
 
     [SerializeField] float speed = 1.0f;
     [SerializeField] Transform centerMuzzle;
+    [SerializeField] Bullet lazerPrefab;
+    //메모리 풀로 사용할 게임 오브젝트
+    private IObjectPool<Bullet> lazerPool;
+    //메모리 풀로 사용할 클래스 
 
+    private void Awake()
+    {
+        // 1,(생성하는 함수) 2, 활성화 하는 함수 3.비활성화 하는 함수  4. 게임 오브젝트를 파괴하는 함수 5. maxsize 메모리에 저장하고 싶은 갯수 
+        lazerPool = new ObjectPool<Bullet>(LayerCreate,LazerGet,ReleaseLazer,Destroylazer,maxSize:20);
+    }
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked; //마우스 락
 
-        InvokeRepeating(nameof(LayerCreate), 0, 0.1f);
+        InvokeRepeating(nameof(Infiitylazer), 0, 0.1f);
     }
-
+    public void Infiitylazer()
+    {
+        var bullet = lazerPool.Get();
+        bullet.transform.position = centerMuzzle.transform.position;
+    }
     
     void Update()
     {
@@ -39,17 +52,30 @@ public class Controller : MonoBehaviour
 
 
     }
-
-    public void LayerCreate()
+    //1게임 오브젝트를 생성하는 함수. 
+    public Bullet LayerCreate()
     {
-        Instantiate
-            (
-            Resources.Load<GameObject>("Layer"),
-            centerMuzzle.position,
-            Quaternion.identity
-
-            );
+        Bullet bullet = Instantiate(lazerPrefab).GetComponent<Bullet>();
+        bullet.SetPool(lazerPool);
+        return bullet;
     }
 
+   // 2 활성화 하는 함수
+   // get 이 실행 될 때 실행되는 함수
+   public void LazerGet(Bullet lazer)
+    {
+        lazer.gameObject.SetActive(true);
+    }
+    //3게임 오브젝트를 비활성화 하는 함수 
+    public void ReleaseLazer(Bullet lazer)
+    {
+        lazer.gameObject.SetActive(false);
+    }    
+
+    //4게임 오브젝트를 파괴하는 함수
+    public void Destroylazer(Bullet lazer)
+    {
+        Destroy(lazer.gameObject);
+    }
 
 }
