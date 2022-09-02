@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
 {
 
     [SerializeField] float speed = 1.0f;
-
+    public int attack = 20;
     //오브젝트 자체에서 어떤 pool에 들어가야하는지 선언해주는 과정입니다.
     private IObjectPool<Bullet> lazerPool;
    

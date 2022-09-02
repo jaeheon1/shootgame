@@ -26,6 +26,7 @@ public class Controller : MonoBehaviour
     }
     public void Infiitylazer()
     {
+        SoundManager.instance.SoundStart(0);
         var bullet = lazerPool.Get();
         bullet.transform.position = centerMuzzle.transform.position;
     }

@@ -14,6 +14,8 @@ TagManager:
   - Coin
   - PlayerRay
   - Rocket
+  - Layer
+  - Character
   layers:
   - Default
   - TransparentFX
