@@ -18,9 +18,9 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating(nameof(CreaterInfinite), 0,5);
         //5초뒤에 5초 마다 반복 실행 됩니다.
         //5초 마다 나오게 됩니다.
-        InvokeRepeating(nameof(CreaterInfinite), 0, 5);
-        InvokeRepeating(nameof(CreaterInfinite), 0, 5);
-        InvokeRepeating(nameof(CreaterInfinite), 0, 5);
+        //InvokeRepeating(nameof(CreaterInfinite), 0, 5);
+        //InvokeRepeating(nameof(CreaterInfinite), 0, 5);
+        //InvokeRepeating(nameof(CreaterInfinite), 0, 5);
 
 
     }

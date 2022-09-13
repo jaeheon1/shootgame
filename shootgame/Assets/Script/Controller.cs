@@ -19,8 +19,7 @@ public class Controller : MonoBehaviour
     }
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked; //마우스 락
+        
 
         InvokeRepeating(nameof(Infiitylazer), 0, 0.1f);
     }

@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
     {
         //게임데이터를 저장합니다.
         gamemanager.instance.Save();
-        gamemanager.instance.score += 100;
+        gamemanager.instance.score += 1000;
         SoundManager.instance.SoundStart(1);
         Instantiate(Resources.Load<GameObject>("Explosion"),//생성할 오브젝트 
             transform.position,//생성되는 게임 오브젝트의 위치

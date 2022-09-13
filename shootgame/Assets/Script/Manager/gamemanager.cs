@@ -7,17 +7,21 @@ public class gamemanager : MonoBehaviour
 
     public static gamemanager instance;
     public int score;
- 
- 
-    void Start()
+
+
+    private void Awake()
     {
+        //Start 함수 이전에 시작이 됩니다.
         //게임 데이터를 게임이 시작할때 불러옵니다.
-        Load();
-        if (instance==null)
+        
+        if (instance == null)
         {
             instance = this;
         }
+        Load();
     }
+
+  
 
     public void Save()
     {
