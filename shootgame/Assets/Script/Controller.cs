@@ -25,6 +25,7 @@ public class Controller : MonoBehaviour
     }
     public void Infiitylazer()
     {
+        if (gamemanager.instance.state == false) return;
         SoundManager.instance.SoundStart(0);
         var bullet = lazerPool.Get();
         bullet.transform.position = centerMuzzle.transform.position;
@@ -32,6 +33,9 @@ public class Controller : MonoBehaviour
     
     void Update()
     {
+        //게임매니저에 있는 state 변수가 false라면 함수를 종료시킵니다.
+        if (gamemanager.instance.state == false) return;
+
         float x= Input.GetAxis("Mouse X");//모바일도 되고 pc도 됩니다.
       
 

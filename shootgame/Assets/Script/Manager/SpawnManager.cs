@@ -40,6 +40,10 @@ public class SpawnManager : MonoBehaviour
     //게임오브젝트를(eneemy) 생성하는 함수
     public void CreaterInfinite()
     {
+        if(gamemanager.instance.state==false)
+        {
+            return;
+        }
         Instantiate
 
             (

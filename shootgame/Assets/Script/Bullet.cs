@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
    
     void Update()
     {
+        if (gamemanager.instance.state == false) return;
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 

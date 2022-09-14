@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private Material enemyMaterial;
     [SerializeField] Material flash;
     [SerializeField] int health = 100;
+    [SerializeField] GameObject effect;
     void Start()
     {
         enemysprite = GetComponent<SpriteRenderer>();
@@ -24,12 +25,16 @@ public class Enemy : MonoBehaviour
     
     void Update()
     {
+        if (gamemanager.instance.state == false) return;
         //vector3.down=0,-1,0
         transform.Translate(Vector3.down * Time.deltaTime); // 적 비행기 내려옴
 
         if(transform.position.y<=-4.5f||health<=0)
         {
-            Destroy(gameObject);
+            //effect 가 활성화되어 파티클이 보이도록 설정합니다.
+            effect.gameObject.SetActive(true);
+            //적 오브젝트가 0.5 초 뒤에 파괴됩니다.
+            Destroy(gameObject,0.25f);
         }
 
       
@@ -67,9 +72,9 @@ public class Enemy : MonoBehaviour
         gamemanager.instance.Save();
         gamemanager.instance.score += 1000;
         SoundManager.instance.SoundStart(1);
-        Instantiate(Resources.Load<GameObject>("Explosion"),//생성할 오브젝트 
-            transform.position,//생성되는 게임 오브젝트의 위치
-            Quaternion.identity);//Quaternion.identity : 회전을 하지 않겠다는 의미입니다.
+        //Instantiate(Resources.Load<GameObject>("Explosion"),//생성할 오브젝트 
+        //    transform.position,//생성되는 게임 오브젝트의 위치
+        //    Quaternion.identity);//Quaternion.identity : 회전을 하지 않겠다는 의미입니다.
             //메모리풀 : 반복적으로 생성되고 파괴되는 오브젝트만 메모리풀에 적재합니다.
     }
 

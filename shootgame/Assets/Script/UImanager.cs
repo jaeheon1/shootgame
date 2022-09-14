@@ -5,7 +5,11 @@ public class UImanager : MonoBehaviour
 {
 
     [SerializeField] Text score;
-    
+
+    private void Start()
+    {
+        
+    }
     void Update()
     {
         score.text = "Kill:" + gamemanager.instance.score;
@@ -21,9 +25,14 @@ public class UImanager : MonoBehaviour
     public void GameStart(GameObject mainMenu)
     {
         mainMenu.SetActive(false);
-
+        gamemanager.instance.state = true;
         Cursor.visible = false; //마우스커서 없애기
 
         Cursor.lockState = CursorLockMode.Locked; //마우스 락
+
+        //Time.unscaledDeltaTime :타임스케일의 영향을 받지 않는 시간입니다.
+        //state =true 일때 게임진행 
+        //state=false 일때 게임정지
     }
 }
+//Time Scale을 0을로 하게 되면 유니티 내에 있는 시간이 다 0으로 정해집니다.
