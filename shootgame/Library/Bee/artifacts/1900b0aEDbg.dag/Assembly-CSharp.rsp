@@ -366,6 +366,7 @@
 "Assets/Script/Manager/SoundManager.cs"
 "Assets/Script/Manager/SpawnManager.cs"
 "Assets/Script/UImanager.cs"
+"Assets/Script/VersatileButton.cs"
 "Assets/Unity UI Samples/Scripts/ActiveStateToggler.cs"
 "Assets/Unity UI Samples/Scripts/ApplicationManager.cs"
 "Assets/Unity UI Samples/Scripts/ChangeColor.cs"

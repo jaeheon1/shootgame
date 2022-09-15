@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour
     [SerializeField] float speed = 1.0f;
     [SerializeField] Transform centerMuzzle;
     [SerializeField] Bullet lazerPrefab;
+    [SerializeField] GameObject pet;
     //메모리 풀로 사용할 게임 오브젝트
     private IObjectPool<Bullet> lazerPool;
     //메모리 풀로 사용할 클래스 
@@ -37,7 +38,16 @@ public class Controller : MonoBehaviour
         if (gamemanager.instance.state == false) return;
 
         float x= Input.GetAxis("Mouse X");//모바일도 되고 pc도 됩니다.
-      
+
+        //Gamemanager.instance.dragon.이 0 이면 펫을 아직 구매하지 앟은 상태 .
+        //Gamemanager.instance.dragon.이 1 이면 펫을 아직 구매 상태
+       
+
+        if (gamemanager.instance.dragon >=1)
+        {
+            pet.SetActive(true);
+        }
+
 
         Vector3 direction = new Vector3(x,0, 0);
 
